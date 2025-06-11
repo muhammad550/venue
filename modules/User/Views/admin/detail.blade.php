@@ -139,6 +139,19 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label>{{ __('Service') }}</label>
+                                <select required class="custom-select" name="service_type">
+                                    <option value="">{{ __('-- Select --') }}</option>
+                                    <option value="venue_service" {{ old('service_type', $row->service_type) == 'venue_service' ? 'selected' : '' }}>
+                                        {{ __('Venue Service') }}
+                                    </option>
+                                    <option value="service_provider" {{ old('service_type', $row->service_type) == 'service_provider' ? 'selected' : '' }}>
+                                        {{ __('Service Provider') }}
+                                    </option>
+                                </select>
+                            </div
                         </div>
                     </div>
                     <div class="panel">

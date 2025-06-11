@@ -2,6 +2,7 @@
 namespace Modules\Property;
 use Modules\ModuleServiceProvider;
 use Modules\Property\Models\Property;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleProvider extends ModuleServiceProvider
 {
@@ -86,14 +87,26 @@ class ModuleProvider extends ModuleServiceProvider
     public static function getUserMenu()
     {
         $res = [];
+        $user = Auth::user();
+        
         if (Property::isEnable()) {
-            $res['property'] = [
-                'url'        => route('property.vendor.index'),
-                'title'      => __("My Listings"),
-                'icon'  => "flaticon-list",
-                'position'   => 32,
-                'permission' => 'property_view',
-            ];
+            if ($user && $user->service_type == 'venue_service') {
+                $res['property'] = [
+                    'url'        => route('property.vendor.index'),
+                    'title'      => __("My Listings"),
+                    'icon'       => "flaticon-list",
+                    'position'   => 32,
+                    'permission' => 'property_view',
+                ];
+            } elseif ($user && $user->service_type == 'service_provider') {
+                $res['services'] = [
+                    'url'        => route('vendor.portfolio'),
+                    'title'      => __("My Portfolio"),
+                    'icon'       => "flaticon-list",
+                    'position'   => 32,
+                    'permission' => 'property_view',
+                ];
+            }
         }
         return $res;
     }

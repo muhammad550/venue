@@ -88,6 +88,7 @@ class PropertyController extends AdminController
 
     public function create(Request $request)
     {
+        
         $this->checkPermission('property_create');
         $row = new $this->property();
         $row->fill([

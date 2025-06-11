@@ -31,6 +31,19 @@
         <i class="input-icon field-icon icofont-ui-password d-none"></i>
         <span class="invalid-feedback error error-password"></span>
     </div>
+    <div class="form-group">
+        <select  class="form-control custom-select" name="service_type">
+            <option value="">{{ __('Select  Service') }}</option>
+            <option value="venue_service">
+                {{ __('Venue') }}
+            </option>
+            <option value="service_provider">
+                {{ __('Service Provider') }}
+            </option>
+        </select>
+        <span class="invalid-feedback error error-service_type"></span>
+    </div>
+    
     <div class="form-group custom-control custom-checkbox">
         <input type="checkbox"  name="term" class="custom-control-input" id="term">
         <label class="custom-control-label" for="term">{!! __("I have read and accept the <a href=':link' target='_blank'>Terms and Privacy Policy</a>",['link'=>get_page_url(setting_item('booking_term_conditions'))]) !!}</label>

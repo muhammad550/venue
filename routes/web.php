@@ -33,6 +33,7 @@ Route::post('register','\Modules\User\Controllers\UserController@userRegister')-
 Route::post('login','\Modules\User\Controllers\UserController@userLogin')->name('auth.login');
 Route::post('logout','\Modules\User\Controllers\UserController@logout')->name('auth.logout');
 // Social Login
+
 Route::get('social-login/{provider}', 'Auth\LoginController@socialLogin');
 Route::get('social-callback/{provider}', 'Auth\LoginController@socialCallBack');
 

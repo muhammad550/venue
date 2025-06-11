@@ -56,6 +56,8 @@
             'avatar_id',
             'bio',
             'business_name',
+            'status',
+            'service_type',
         ];
 
         /**

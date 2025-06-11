@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
+Route::get('photography', '\Modules\User\Controllers\PortfoiloController@photography');
 Route::group(['prefix'=>'user','middleware' => ['auth','verified']],function(){
     Route::match(['get'],'/dashboard','UserController@dashboard')->name("vendor.dashboard");
     Route::post('/reloadChart','UserController@reloadChart');
@@ -10,6 +11,12 @@ Route::group(['prefix'=>'user','middleware' => ['auth','verified']],function(){
     Route::get('/stripe-checkout', 'StripeCheckoutController@redirectToCheckout')->name('user.stripe-checkout');;
     Route::get('/checkout-success', 'StripeCheckoutController@success')->name('checkout.success');
     Route::get('/checkout-cancel', 'StripeCheckoutController@cancel')->name('checkout.cancel');
+    Route::get('photography', '\Modules\User\Controllers\PortfoiloController@photography');
+    Route::get('photographer/sven', '\Modules\User\Controllers\PortfoiloController@detailphotography');
+
+    Route::get('/portfolio','PortfoiloController@showPortfolio')->name("vendor.portfolio");
+    Route::get('/edit/portfolio','PortfoiloController@editPortfolio')->name("vendor.edit_portfolio");
+    Route::post('/update/portfolio','PortfoiloController@updatePortfolio')->name("vendor.update_portfolio");
 
     Route::get('/profile','UserController@profile')->name("user.profile.index");
     Route::post('/profile','UserController@profileUpdate')->name("user.profile.update");

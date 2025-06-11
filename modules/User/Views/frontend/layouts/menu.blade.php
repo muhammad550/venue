@@ -118,6 +118,7 @@
             return $value['position'] ?? 100;
         }));
     foreach ($menus as $k => $menuItem) {
+        
         if (!empty($menuItem['permission']) and !Auth::user()->hasPermissionTo($menuItem['permission'])) {
             unset($menus[$k]);
             continue;

@@ -543,6 +543,7 @@ jQuery(function ($) {
                 'first_name': form.find('input[name=first_name]').val(),
                 'last_name': form.find('input[name=last_name]').val(),
                 'phone': form.find('input[name=phone]').val(),
+                'service_type': form.find('select[name=service_type]').val(),
                 'term': form.find('input[name=term]').is(":checked") ? 1 : '',
                 'g-recaptcha-response': form.find('[name=g-recaptcha-response]').val(),
             },

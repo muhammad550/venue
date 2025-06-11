@@ -46,6 +46,7 @@ class ManagePropertyController extends FrontendController
 
     public function manageProperty(Request $request)
     {
+        
         $this->checkPermission('property_view');
         $user_id = Auth::id();
         $rows = $this->propertyClass::query()->select("bc_properties.*")->where("bc_properties.create_user", $user_id);
@@ -112,8 +113,10 @@ class ManagePropertyController extends FrontendController
 
     public function createProperty(Request $request)
     {
+        
         $this->checkPermission('property_create');
         $row = new $this->propertyClass();
+        // dd($row);
         $data = [
             'row'           => $row,
             'translation' => new $this->propertyTranslationClass(),
@@ -352,6 +355,7 @@ class ManagePropertyController extends FrontendController
     }
 
 	public function cloneProperty(Request $request,$id){
+        dd('cloneProperty');
 		$this->checkPermission('property_update');
 		$user_id = Auth::id();
 		$row = $this->propertyClass::where("create_user", $user_id);

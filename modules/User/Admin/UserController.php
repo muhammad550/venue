@@ -65,6 +65,7 @@ class UserController extends AdminController
 
     public function edit(Request $request, $id)
     {
+        
         $row = User::find($id);
         if (empty($row)) {
             return redirect('admin/module/user');
@@ -151,6 +152,7 @@ class UserController extends AdminController
 
     public function store(Request $request, $id)
     {
+        
         if($id and $id>0){
             $this->checkPermission('user_update');
             $row = User::find($id);
@@ -167,6 +169,7 @@ class UserController extends AdminController
                 'status'              => 'required|max:50',
                 'phone'              => 'required',
                 'country'              => 'required',
+                'service_type'              => 'required',
                 'role_id'              => 'required|max:11',
                 'email'              =>[
                     'required',
@@ -192,6 +195,7 @@ class UserController extends AdminController
                 'status'              => 'required|max:50',
                 'phone'              => 'required',
                 'country'              => 'required',
+                'service_type'              => 'required',
                 'role_id'              => 'required|max:11',
                 'email'              =>[
                     'required',
@@ -237,6 +241,7 @@ class UserController extends AdminController
         $row->business_name = $request->input('business_name');
         $row->vendor_commission_type = $request->input('vendor_commission_type');
         $row->vendor_commission_amount = $request->input('vendor_commission_amount');
+        $row->service_type = $request->input('service_type');
 
         //Block all service when user is block
         if($row->status == "blocked"){

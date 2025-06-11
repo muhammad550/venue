@@ -297,6 +297,7 @@ class UserController extends FrontendController
                 'string'
             ],
             'phone'       => ['required','unique:users'],
+            'service_type' => ['required'],
             'term'       => ['required'],
         ];
         $messages = [
@@ -306,6 +307,7 @@ class UserController extends FrontendController
             'password.required'   => __('Password is required field'),
             'first_name.required' => __('The first name is required field'),
             'last_name.required'  => __('The last name is required field'),
+            'service_type.required'  => __('The service is required field'),
             'term.required'       => __('The terms and conditions field is required'),
         ];
         // if (ReCaptchaEngine::isEnable() and setting_item("user_enable_register_recaptcha")) {
@@ -333,6 +335,7 @@ class UserController extends FrontendController
                 'password'   => Hash::make($request->input('password')),
                 'status'    => $request->input('publish','publish'),
                 'phone'    => $request->input('phone'),
+                'service_type' => $request->input('service_type'),
             ]);
             event(new Registered($user));
             Auth::loginUsingId($user->id);
